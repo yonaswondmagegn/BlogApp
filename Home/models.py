@@ -12,6 +12,7 @@ class BlogImageFragment(models.Model):
     image = models.ImageField(upload_to='fragment_images',null=True)
     image_link = models.TextField(null=True,blank=True)
     first_is = models.CharField(max_length=1,choices=first,default='T')
+    order = models.IntegerField(null=True)
     date = models.DateTimeField(default=timezone.now)
 
 
@@ -20,13 +21,15 @@ class BlogVideoFragment(models.Model):
         ('T','TEXT'),
         ('V','VIDEO')
     )
-    text = models.TextField(null=True)
+    text = models.TextField()
     video = models.FileField(
         upload_to='fragment_videos',
         validators=[FileExtensionValidator(allowed_extensions=['MP4'])],
-        null=True
+        null=True,
+        blank=True
         )
-    video_link = models.TextField(null=True)
+    video_link = models.TextField(null=True,blank=True)
+    order = models.IntegerField()
     date  = models.DateTimeField(default=timezone.now)
 
 
