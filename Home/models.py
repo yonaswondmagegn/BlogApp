@@ -49,8 +49,9 @@ class Blog(models.Model):
     likes = models.ManyToManyField(BlogLike,blank=True,related_name='likes')
     videos = models.ManyToManyField(BlogVideoFragment,related_name='video_fragments',blank=True)
     gener = models.CharField(max_length=225,null=True)
-
+    
     date = models.DateTimeField(default=timezone.now)
+
 
 
 # the review model for the blog model 
@@ -67,7 +68,7 @@ class BlogComment(models.Model):
     )
     user = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     blog = models.ForeignKey(Blog,on_delete=models.CASCADE,null=True)
-    type = models.CharField(choices=type,max_length=1)
+    comment_type = models.CharField(choices=type,max_length=1)
     replay_for = models.ForeignKey('self',on_delete=models.CASCADE,null=True,blank=True)
     text = models.TextField()
     likes = models.ManyToManyField(CommentLike,blank=True,related_name='comment_likes')

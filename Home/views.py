@@ -24,7 +24,7 @@ class BlogViewset(ModelViewSet):
     permission_classes = [IsAuthenticatedOrReadOnly,CreatorOrReadonly]
     filter_backends = [DjangoFilterBackend,SearchFilter,OrderingFilter]
     filterset_fields = ['author','gener','date']
-    search_fields = ['title',"images_fragments__text","video_fragments__text"]
+    search_fields = ['title','images__text','videos__text']
     OrderingFilter = ['date',"likes"]
 
 
